@@ -9,15 +9,26 @@ import { Usuario } from 'src/app/Entidades/usuario';
 })
 export class JuegoComponent implements OnInit {
 
- usuario:Usuario= new Usuario();
+  usuario: Usuario = new Usuario();
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit(): void {
-    
+    // Guardamos en localstorage en JSON
+    this.usuario.nombre = "Franco";
+    this.usuario.apellido = "Lippi";
+    localStorage.setItem("usuario", JSON.stringify(this.usuario));
+
+    // Leemos del localstorage
+    let usr = localStorage.getItem("usuario");
+    console.info(usr);
+    if (usr) {
+      usr = JSON.parse(usr);
+    }
+    console.info(usr);
   }
 
-  
+
 
 }
